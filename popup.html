@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Short.GG</title>
+    <style type="text/css">
+      body {
+        margin-bottom: 3.5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+        width: 442px;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: 'Pacifico', cursive;
+      }
+
+      div, p, input {
+        font-family: 'Lato', sans-serif !important;
+      }
+
+
+      input, .input-container, .button, .spin, .button-clipboard {
+        transition: all 0.218s;
+      }
+
+      input {
+        height: 44px;
+
+        font-size: 2rem;
+
+        border: none;
+        margin: 0px;
+        padding: 0px;
+        width: calc(100% - 1rem - 2rem - 44px);
+        position: absolute;
+        z-index: 1;
+        outline: none;
+
+        background-color: transparent;
+        color: #616161;
+        text-align: left;
+        padding-left: 1rem;
+        left: 0;
+
+        padding-right: calc(44px + 2rem);
+      }
+
+      .input-container {
+        padding: 1rem;
+        padding-right: calc(44px + 2rem);
+      }
+
+      .input-button-container {
+        position: relative;
+        max-width: 584px;
+        margin: 0 auto;
+      }
+
+      .input-container {
+        position: relative;
+
+        max-width: 584px;
+        height: 44px;
+
+        border: 1px solid #616161;
+        margin: 0 auto;
+      }
+
+      .input-container:hover {
+        border: 1px solid #212121;
+      }
+
+      .button-clipboard {
+        position: relative;
+        float: right;
+
+        display: inline-block;
+        border: 1px solid #616161;
+
+        height: 44px;
+        width: 44px;
+        padding: 1rem;
+
+        z-index: 3;
+      }
+
+
+      .button-clipboard:hover {
+        cursor: pointer;
+        background-color: #F1F4BB;
+      }
+
+      .hint {
+        border: 1px solid #031D44;
+        width: 84px;
+        z-index: 40;
+        background-color: #FFF;
+        padding: 1rem;
+
+        position: absolute;
+        bottom: -42px;
+        left: -84px;
+      }
+
+      .button {
+        position: relative;
+        margin: 0 auto;
+        border-radius: 90px;
+
+        background-color: #F44336;
+
+        box-shadow: 2px 1px 5px #888888;
+
+        height: 9rem;
+        width: 9rem;
+
+        margin-top: 3rem;
+      }
+
+      .button:hover {
+        background-color: #e53935;
+        cursor: pointer;
+
+        box-shadow: none;
+      }
+
+      img {
+        position: relative;
+
+        width: 50%;
+        height: 50%;
+
+        margin: 0 auto;
+        margin-top: 23%;
+        margin-left: 25%;
+      }
+
+      .spin {
+        box-shadow: inset 0 0 10px #000000 !important;
+        -webkit-animation:spin 0.218s linear infinite;
+        -moz-animation:spin 0.218s linear infinite;
+        animation:spin 0.218s linear infinite;
+      }
+
+      @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+      @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+      @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
+      #container {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+    -->
+    <script src="popup.js"></script>
+    <script src="clipboard.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
+  </head>
+
+  <body>
+    <h1>Short.gg</h1>
+    <div class="input-button-container">
+      <div
+        class="button-clipboard"
+        data-clipboard-target="#mainInput"
+        @click="displayHint"
+      >
+        <img alt="clipboard" src="./assets/clipboard.svg" />
+        <div id="hint" class="hint" style="display:none" >
+          Copied!
+        </div>
+      </div>
+      <div class="input-container">
+        <input id="mainInput" type="text" value="Shortening..." />
+      </div>
+      <br />
+      <div id="long-url">
+        ...
+      </div>
+    </div>
+  </body>
+</html>
